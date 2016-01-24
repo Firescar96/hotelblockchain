@@ -1,0 +1,1 @@
+../../../config/development/LoyaltyTokenRegistry.sol.js

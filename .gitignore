@@ -1,0 +1,9 @@
+bower_components
+config/chains/development.json
+generated/
+dist/
+.node-xmlhttprequest-sync-*
+.node-xmlhttprequest-content-*
+packages/
+reports/
+.env.json
