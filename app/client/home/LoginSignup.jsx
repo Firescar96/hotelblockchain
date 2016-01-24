@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import {web3} from '../lib/lib.jsx';
+import {web3,LoyaltyTokenRegistry,PersonaRegistry} from '../lib/lib.jsx';
 
 const modalStyles = {
   content : {
@@ -16,7 +16,7 @@ const modalStyles = {
 var LoginSignup = React.createClass({
   getInitialState() {
     return {
-      account: '',
+      account: web3.eth.defaultAccount,
       isSignupModalOpen: false,
       isLoginModalOpen: false
     }
@@ -38,26 +38,32 @@ var LoginSignup = React.createClass({
     })
   },
   login() {
-
+    //TODO get info from PersonaRegistry
+    this.closeModals()
+  },
+  signup(){
+    //TODO save info to PersonaRegistry
     this.closeModals()
   },
   render() {
     var addressOptions = web3.eth.accounts.map((account) => {
-      var selected = account===this.state.account
       return (
-        <option value={account} key={account} selected={selected}>{account}</option>
+        <option value={account} key={account}>{account}</option>
       )
     })
-    var loyaltyBrands = LoyaltyTokenRegistry.getTokens().call().map((brand) => {
+
+    var loyaltyBrands = LoyaltyTokenRegistry.getTokens.call().map((tokenAddress) => {
+      var brand = LoyaltyTokenRegistry.registryRecords(tokenAddress)
+      //TODO some stuff with getting the details of the token from it's contract
       return (
-        <label>
-          Name here {brand.name}
-          <input name="loyaltyBrand" type="checkbox" value={"addresshere"+brand.account}></input>
+        <label key={brand.tokenSymbol}>
+          Name here {brand.tokenName}
+          <input name="loyaltyBrand" type="checkbox" value={"addresshere"+brand.tokenSymbol} ></input>
         </label>
       )
     })
     return (
-      <nav className="nav">
+      <div>
         <button className="btn btn-default" onClick={this.handleChange('isLoginModalOpen')} value="true">Login</button>
         <button className="btn btn-default" onClick={this.handleChange('isSignupModalOpen')} value="true">SignUp</button>
 
@@ -68,9 +74,9 @@ var LoginSignup = React.createClass({
 
           <label>
             Choose address
-            <select onChange={this.handleChange('account','select')}>{addressOptions}</select>
+            <select value={this.state.account} onChange={this.handleChange('account','select')}>{addressOptions}</select>
           </label>
-          <button onClick={this.login}>Finish</button>
+          <button onClick={this.login}>Close</button>
         </Modal>
 
         <Modal
@@ -80,18 +86,17 @@ var LoginSignup = React.createClass({
 
           <label>
             Choose address
-            <select onChange={this.handleChange('account','select')}>{addressOptions}</select>
+            <select value={this.state.account} onChange={this.handleChange('account','select')}>{addressOptions}</select>
           </label>
 
           <div>
             <span>Select Loyalty Brands</span>
-
+            {loyaltyBrands}
           </div>
-          <div>Save Preferences</div>
-          <button onClick={this.closeModals}>Finish</button>
+          <button onClick={this.signup}>Close</button>
         </Modal>
 
-      </nav>
+      </div>
     )
   }
 })

@@ -10,7 +10,8 @@
     "images/": "images/"
   },
   "deploy": [
-    "MetaCoin"
+    "LoyaltyTokenRegistry",
+    "PersonaRegistry"
   ],
   "rpc": {
     "host": "localhost",

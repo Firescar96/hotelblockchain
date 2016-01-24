@@ -1,1 +1,1 @@
-../../../config/development/LoyaltyTokenRegistry.sol.js
+../../../environments/development/contracts/LoyaltyTokenRegistry.sol.js

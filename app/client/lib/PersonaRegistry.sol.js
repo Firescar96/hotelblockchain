@@ -1,0 +1,1 @@
+../../../environments/development/contracts/PersonaRegistry.sol.js
