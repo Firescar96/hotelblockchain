@@ -3,9 +3,13 @@ import {web3} from '../lib/lib.jsx';
 
 var ConnectBank = React.createClass({
   getInitialState(){
+    web3.eth.getAccounts((_,accounts) => {
+      this.setState({accounts:accounts})
+    })
     return {
       type:'fiat',
-      account: web3.eth.account
+      account: web3.eth.defaultAccount,
+      accounts: []
     }
   },
   handleChange: function (key,type) {
@@ -13,12 +17,13 @@ var ConnectBank = React.createClass({
       var state = {};
       if(type=='select')
       state[key]=e.target.options[e.target.selectedIndex].value
+      else
       state[key] = e.target.value;
       this.setState(state);
     }.bind(this);
   },
   render() {
-    var addressOptions = web3.eth.accounts.map((account) => {
+    var addressOptions = this.state.accounts.map((account) => {
       return (
         <option value={account} key={account}>{account}</option>
       )

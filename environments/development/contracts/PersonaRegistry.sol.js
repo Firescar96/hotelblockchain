@@ -29,11 +29,11 @@ var factory = function factory(Pudding) {
   PersonaRegistry.abi = [{ "constant": false, "inputs": [{ "name": "token", "type": "address" }, { "name": "newAmount", "type": "uint32" }], "name": "updateToken", "outputs": [], "type": "function" }, { "constant": false, "inputs": [{ "name": "_persona", "type": "address" }], "name": "registerPersona", "outputs": [], "type": "function" }, { "inputs": [], "type": "constructor" }];
   PersonaRegistry.binary = "606060405260288060106000396000f3606060405260e060020a6000350463119e26058114602457806348d665b3146024575b005b602256";
 
-  if ("0xd6f084ee15e38c4f7e091f8dd0fe6fe4a0e203ef" != "") {
-    PersonaRegistry.address = "0xd6f084ee15e38c4f7e091f8dd0fe6fe4a0e203ef";
+  if ("0x19eaa2d242cace5754f1dcc3cf94d7a692dd8de2" != "") {
+    PersonaRegistry.address = "0x19eaa2d242cace5754f1dcc3cf94d7a692dd8de2";
 
     // Backward compatibility; Deprecated.
-    PersonaRegistry.deployed_address = "0xd6f084ee15e38c4f7e091f8dd0fe6fe4a0e203ef";
+    PersonaRegistry.deployed_address = "0x19eaa2d242cace5754f1dcc3cf94d7a692dd8de2";
   }
 
   PersonaRegistry.generated_with = "1.0.3";

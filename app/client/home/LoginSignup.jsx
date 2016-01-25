@@ -17,6 +17,8 @@ var LoginSignup = React.createClass({
   getInitialState() {
     return {
       account: web3.eth.defaultAccount,
+      accounts: [],
+      loyaltyTokens: [],
       isSignupModalOpen: false,
       isLoginModalOpen: false
     }
@@ -45,15 +47,22 @@ var LoginSignup = React.createClass({
     //TODO save info to PersonaRegistry
     this.closeModals()
   },
+  componentWillMount() {
+    web3.eth.getAccounts((_,accounts) => {
+      this.setState({accounts:accounts})
+    })
+    LoyaltyTokenRegistry.getTokens.call((_,tokens) => {
+      this.setState({loyaltyTokens:tokens})
+    })
+  },
   render() {
-    var addressOptions = web3.eth.accounts.map((account) => {
+    var addressOptions = this.state.accounts.map((account) => {
       return (
         <option value={account} key={account}>{account}</option>
       )
     })
 
-    var loyaltyBrands = LoyaltyTokenRegistry.getTokens.call().map((tokenAddress) => {
-      var brand = LoyaltyTokenRegistry.registryRecords(tokenAddress)
+    var loyaltyBrands = this.state.loyaltyTokens.map((brand) => {
       //TODO some stuff with getting the details of the token from it's contract
       return (
         <label key={brand.tokenSymbol}>

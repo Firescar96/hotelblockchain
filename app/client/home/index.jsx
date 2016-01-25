@@ -3,11 +3,13 @@ import React from 'react';
 import LoginSignup from './LoginSignup.jsx'
 import ConnectBank from './ConnectBank.jsx'
 import Terms from './Terms.jsx'
+import Review from './Review.jsx'
 
 var Home = React.createClass({
   getInitialState() {
     return {
-      termsAccepted: false
+      termsAccepted:false,
+      hotelInfo: this.props.params
     }
   },
   flipTermsAccepted(e) {
@@ -57,7 +59,7 @@ var Home = React.createClass({
             </label>
           </div>
         </div>
-        <button className="btn btn-primary pull-right">Review and Finalize</button>
+        <Review hotelInfo={this.state.hotelInfo} />
       </div>
     )
   }
