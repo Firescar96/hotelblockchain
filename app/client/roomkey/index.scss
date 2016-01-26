@@ -1,17 +1,28 @@
+body {
+  background-image: url("/roomkey.png");
+  background-size: 100% 1841px;
+  background-repeat: no-repeat;
+  overflow-y: scroll;
+  width: 100%;
+  height: 1841px;
+}
+
 #main {
+  position: relative;;
   display: block;
-  padding: 50px 75px 15px 75px;
-  margin-top: 400px;
-  background-color: #e66;
+  width: 64%;
+  padding: 25px 80px 25px 80px;
+  top: 370px;
+  background-color: #f15d59;
   color: #fff;
+  border-radius: 10px;
 
   >* {
-    margin: 1%;
+    margin: 10px 1%;
 
     &[for=location] {
       display: block;
       width: 98%;
-      margin: 1%;
     }
 
     &[for=checkin], &[for=checkout] {
@@ -26,10 +37,20 @@
       width: 12.5%;
     }
   }
+
+  input {
+    height: 60px;
+    font-size: 18px;
+  }
+
   #submit {
-    background-color: #0d5;
+    background-color: #8ecb37;
     border: 0;
     padding: 10px;
     width: 20%;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
   }
 }

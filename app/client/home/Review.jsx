@@ -45,6 +45,7 @@ var Review = React.createClass({
           style={modalStyles}>
           <form className="form-group">
             <input className="form-control" value={this.state.hotelInfo.checkin}></input>
+              <input className="form-control" value={this.state.hotelInfo.location}></input>
             <input className="form-control" value={this.state.hotelInfo.checkout}></input>
             <input  className="form-control" value={this.state.hotelInfo.nights}></input>
             <input className="form-control" value={this.state.hotelInfo.rooms}></input>
