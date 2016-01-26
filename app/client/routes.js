@@ -8,6 +8,8 @@ FlowRouter.route('/', {
   name: 'home',
   action: function(params, queryParams){
     Modal.setAppElement(document.body);
+    console.log(queryParams);
+    console.log(params);
     mount(Home, {params: queryParams})
   }
 });

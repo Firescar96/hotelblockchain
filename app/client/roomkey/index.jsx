@@ -12,18 +12,19 @@ var RoomKey = React.createClass({
       location:''
     }
   },
-  handleChange: function (key) {
+  handleChange: function (key,type) {
     return function (e) {
       var state = {};
+      if(type=='date')
+      state[key] = e.value
+      else
       state[key] = e.target.value;
-      $.datepicker.parseDate('D, d M yy', value, options )
-
       this.setState(state);
-
     }.bind(this);
   },
   submit(e) {
     e.preventDefault()
+    console.log(this.state);
     window.location = "/?"+$.param(this.state)
   },
   render() {
@@ -33,15 +34,15 @@ var RoomKey = React.createClass({
         <form id="main" className="container form-group">
           <label htmlFor="location">
             <h4>Location</h4>
-            <input id="location" className="form-control" placeholder="location" value={this.state.location} onChange={this.handleChange("location")} readonly/>
+            <input id="location" className="form-control" placeholder="location" value={this.state.location} onChange={this.handleChange("location")}/>
           </label>
           <label htmlFor="checkin">
             <h4>Check In</h4>
-            <input id="checkin" className="form-control" placeholder="checkin" value={this.state.checkin} onChange={this.handleChange("checkin")} readonly/>
+            <input id="checkin" className="form-control" placeholder="checkin" value={this.state.checkin} onChange={this.handleChange("checkin","date")} readOnly/>
           </label>
           <label htmlFor="checkout">
             <h4>Check Out</h4>
-            <input id="checkout" className="form-control" placeholder="checkout" value={this.state.checkout} onChange={this.handleChange("checkout")} readonly/>
+            <input id="checkout" className="form-control" placeholder="checkout" value={this.state.checkout} onChange={this.handleChange("checkout","date")} readOnly/>
           </label>
           <label htmlFor="rooms">
             <h4>Rooms</h4>
@@ -49,7 +50,7 @@ var RoomKey = React.createClass({
           </label>
           <label htmlFor="guests">
             <h4>Guests</h4>
-            <input className="form-control" placeholder="guests" value={this.state.guests} onChange={this.handleChange("guests")}></input>
+            <input id="guests" className="form-control" placeholder="guests" value={this.state.guests} onChange={this.handleChange("guests")}></input>
           </label>
           <button id="submit" onClick={this.submit}>Book Now</button>
         </form>
@@ -57,15 +58,22 @@ var RoomKey = React.createClass({
     )
   },
   componentDidMount(){
+    var self=this;
     $("#checkin").datepicker({
       stepHour: 1,
       stepMinute: 5,
-      dateFormat: 'D, d M yy'
+      dateFormat: 'D, d M yy',
+      onSelect(dateText) {
+        self.handleChange('checkin','date')(this)
+      }
     })
     $("#checkout").datepicker({
       stepHour: 1,
       stepMinute: 5,
-      dateFormat: 'D, d M yy'
+      dateFormat: 'D, d M yy',
+      onSelect(dateText) {
+        self.handleChange('checkout','date')(this)
+      }
     })
   }
 })

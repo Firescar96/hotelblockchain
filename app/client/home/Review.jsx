@@ -14,6 +14,7 @@ const modalStyles = {
 
 var Review = React.createClass({
   getInitialState(){
+    console.log(this.props.hotelInfo);
     return {
       isModalOpen: false,
       hotelInfo: this.props.hotelInfo
