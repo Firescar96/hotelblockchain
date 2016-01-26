@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../Navbar.jsx'
 
 var RoomKey = React.createClass({
   getInitialState() {
@@ -28,6 +29,7 @@ var RoomKey = React.createClass({
   render() {
     return (
       <div id="roomkey">
+        <Navbar/>
         <form id="main" className="container form-group">
           <label htmlFor="location">
             <h4>Location</h4>

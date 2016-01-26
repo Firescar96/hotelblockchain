@@ -9,8 +9,23 @@ web3.eth.getAccounts((_,accounts) => {
 })
 var ltrData = LTRFactory(Pudding)
 var LoyaltyTokenRegistry = web3.eth.contract(ltrData.abi).at(ltrData.address)
+window.LoyaltyTokenRegistry = LoyaltyTokenRegistry
 
 var personaData = PersonaFactory(Pudding)
 var PersonaRegistry = web3.eth.contract(personaData.abi).at(personaData.address)
+window.PersonaRegistry = PersonaRegistry
 
-export default {web3: web3, LoyaltyTokenRegistry: LoyaltyTokenRegistry, PersonaRegistry: PersonaRegistry}
+const modalStyles = {
+  content : {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    width: '500px',
+    height: '300px',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  }
+};
+
+export default {web3: web3, modalStyles: modalStyles, LoyaltyTokenRegistry: LoyaltyTokenRegistry, PersonaRegistry: PersonaRegistry}

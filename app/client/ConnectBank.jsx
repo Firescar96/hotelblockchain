@@ -1,5 +1,5 @@
 import React from 'react';
-import {web3} from '../lib/lib.jsx';
+import {web3} from './lib/lib.jsx';
 
 var ConnectBank = React.createClass({
   getInitialState(){
@@ -52,10 +52,10 @@ var ConnectBank = React.createClass({
 
         <div className={this.state.type=='ether'?'':'hidden'}>
           <label>
-          Choose address
-          <select value={this.state.account} onChange={this.handleChange('account','select')}>{addressOptions}</select>
-        </label>
-      </div>
+            Choose address
+            <select value={this.state.account} onChange={this.handleChange('account','select')}>{addressOptions}</select>
+          </label>
+        </div>
       </div>
     );
   }

@@ -1,19 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
-import {web3,LoyaltyTokenRegistry,PersonaRegistry} from '../lib/lib.jsx';
+import {web3,LoyaltyTokenRegistry,PersonaRegistry,modalStyles} from './lib/lib.jsx';
 
-const modalStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
-
-var LoginSignup = React.createClass({
+var Account = React.createClass({
   getInitialState() {
     return {
       account: web3.eth.defaultAccount,
@@ -35,8 +24,7 @@ var LoginSignup = React.createClass({
   },
   closeModals() {
     this.setState({
-      isSignupModalOpen: false,
-      isLoginModalOpen: false
+      type:''
     })
   },
   login() {
@@ -51,7 +39,7 @@ var LoginSignup = React.createClass({
     web3.eth.getAccounts((_,accounts) => {
       this.setState({accounts:accounts})
     })
-    LoyaltyTokenRegistry.getTokens.call((_,tokens) => {
+    LoyaltyTokenRegistry.registryRecords.call((_,tokens) => {
       this.setState({loyaltyTokens:tokens})
     })
   },
@@ -72,27 +60,29 @@ var LoginSignup = React.createClass({
       )
     })
     return (
-      <div>
-        <button className="btn btn-default" onClick={this.handleChange('isLoginModalOpen')} value="true">Login</button>
-        <button className="btn btn-default" onClick={this.handleChange('isSignupModalOpen')} value="true">SignUp</button>
+      <div  className="form-group">
 
-        <Modal
-          isOpen={this.state.isLoginModalOpen === 'true'}
-          onRequestClose={this.closeModals}
-          style={modalStyles}>
+        <div id="accountToggleGroup">
+          <label htmlFor="login" className={this.state.type=='login'?'checked':''}>
+            <input id="login" name="accountToggle" type="radio" onClick={this.handleChange('type')} value="login"/>
+            <span>Login</span>
+          </label>
 
+          <label htmlFor="signup" className={this.state.type=='signup'?'checked':''}>
+            <input id="signup" name="accountToggle" type="radio" onClick={this.handleChange('type')} value="signup"/>
+            <span>Signup</span>
+          </label>
+        </div>
+
+        <div className={this.state.type=='login'?'':'hidden'}>
           <label>
             Choose address
             <select value={this.state.account} onChange={this.handleChange('account','select')}>{addressOptions}</select>
           </label>
           <button onClick={this.login}>Close</button>
-        </Modal>
+        </div>
 
-        <Modal
-          isOpen={this.state.isSignupModalOpen === 'true'}
-          onRequestClose={this.closeModals}
-          style={modalStyles}>
-
+        <div className={this.state.type=='signup'?'':'hidden'}>
           <label>
             Choose address
             <select value={this.state.account} onChange={this.handleChange('account','select')}>{addressOptions}</select>
@@ -103,11 +93,10 @@ var LoginSignup = React.createClass({
             {loyaltyBrands}
           </div>
           <button onClick={this.signup}>Close</button>
-        </Modal>
-
+        </div>
       </div>
     )
   }
 })
 
-export default LoginSignup
+export default Account

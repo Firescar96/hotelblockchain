@@ -1,0 +1,15 @@
+nav {
+  float: right;
+
+  button {
+    background-color: transparent;
+    border-width: 0;
+    color: #fff;
+    font-size: 20px;
+    margin-top: 40px;
+    margin-right: 30px;
+    padding: 15px;
+    z-index: 100;
+    position: static;
+  }
+}

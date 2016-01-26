@@ -37,23 +37,29 @@ var Review = React.createClass({
   },
   render() {
     return (
-      <div>
-        <button className="btn btn-primary pull-right" onClick={this.handleChange('isModalOpen')} value="true">Review and Finalize</button>
-        <Modal
-          isOpen={this.state.isModalOpen === 'true'}
-          onRequestClose={this.closeModal}
-          style={modalStyles}>
-          <form className="form-group">
-            <input className="form-control" value={this.state.hotelInfo.checkin}></input>
-              <input className="form-control" value={this.state.hotelInfo.location}></input>
-            <input className="form-control" value={this.state.hotelInfo.checkout}></input>
-            <input  className="form-control" value={this.state.hotelInfo.nights}></input>
-            <input className="form-control" value={this.state.hotelInfo.rooms}></input>
-            <input className="form-control" value={this.state.hotelInfo.guests}></input>
-            <button onClick={this.submit}>Confirm and Pay</button>
-          </form>
-        </Modal>
-      </div>
+      <form className="form-group">
+        <label htmlFor="location">
+          <h4>Location</h4>
+          <input id="location" className="form-control" placeholder="location" value={this.state.hotelInfo.location} onChange={this.handleChange("location")} readonly/>
+        </label>
+        <label htmlFor="checkin">
+          <h4>Check In</h4>
+          <input id="checkin" className="form-control" placeholder="checkin" value={this.state.hotelInfo.checkin} onChange={this.handleChange("checkin")} readonly/>
+        </label>
+        <label htmlFor="checkout">
+          <h4>Check Out</h4>
+          <input id="checkout" className="form-control" placeholder="checkout" value={this.state.hotelInfo.checkout} onChange={this.handleChange("checkout")} readonly/>
+        </label>
+        <label htmlFor="rooms">
+          <h4>Rooms</h4>
+          <input id="rooms" className="form-control" placeholder="rooms" value={this.state.hotelInfo.rooms} onChange={this.handleChange("rooms")}></input>
+        </label>
+        <label htmlFor="guests">
+          <h4>Guests</h4>
+          <input className="form-control" placeholder="guests" value={this.state.hotelInfo.guests} onChange={this.handleChange("guests")}></input>
+        </label>
+        <button onClick={this.submit}>Confirm and Pay</button>
+      </form>
     )
   }
 })
