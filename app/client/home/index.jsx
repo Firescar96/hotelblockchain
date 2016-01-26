@@ -17,7 +17,7 @@ var Home = React.createClass({
   },
   render() {
     return (
-      <div className="container">
+      <div id="home" className="container">
         <h1>
           Hotel Blockchain
         </h1>

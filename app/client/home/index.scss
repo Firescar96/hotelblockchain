@@ -1,37 +1,39 @@
 @import "../lib/mixins.scss";
 
-$buttonbgColor : #fff;
-$txtbgColor : #7D7D7D;
+#home {
+  $buttonbgColor : #fff;
+  $txtbgColor : #7D7D7D;
 
-div#bankToggleGroup {
-   display: block;
-   margin: 10px 0;
+  div#bankToggleGroup {
+    display: block;
+    margin: 10px 0;
 
-   >label {
-     margin: 0;
-     align-items: center;
+    >label {
+      margin: 0;
+      align-items: center;
 
-     //TODO: why wont these get applied
-     &[for=fiat] {
-       @include colorize($buttonbgColor, $txtbgColor);
-     }
-     &[for=ether] {
-       @include colorize($buttonbgColor, $txtbgColor);
-     }
+      //TODO: why wont these get applied
+      &[for=fiat] {
+        @include colorize($buttonbgColor, $txtbgColor);
+      }
+      &[for=ether] {
+        @include colorize($buttonbgColor, $txtbgColor);
+      }
 
-     input {
-       display: none;
+      input {
+        display: none;
 
-       + span {
-         position: relative;
-         display: block;
-         text-align: center;
-         padding: 5px;
-       }
+        + span {
+          position: relative;
+          display: block;
+          text-align: center;
+          padding: 5px;
+        }
 
-       &:checked + span {
-         text-shadow:  1px  rgba(255,255,255,.5);
-       }
-     }
-   }
- }
+        &:checked + span {
+          text-shadow:  1px  rgba(255,255,255,.5);
+        }
+      }
+    }
+  }
+}
