@@ -1,14 +1,27 @@
 import React from 'react'
 import Modal from 'react-modal';
-import ConnectBank from './ConnectBank.jsx'
+import Wallet from './Wallet.jsx'
 import Account from './Account.jsx'
-import {modalStyles} from './lib/lib.jsx'
 
+const modalStyles = {
+  content : {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    width: '700px',
+    height: '500px',
+    marginRight: '-50%',
+    padding: '0',
+    overflow: 'hidden',
+    transform: 'translate(-50%, -50%)'
+  }
+};
 
 var Navbar = React.createClass({
   getInitialState() {
     return {
-      isWalletModalOpen:false,
+      isWalletModalOpen:true,
       isAccountModalOpen:false
     }
   },
@@ -38,7 +51,7 @@ var Navbar = React.createClass({
           isOpen={this.state.isWalletModalOpen === 'true'}
           onRequestClose={this.closeModals}
           style={modalStyles}>
-          <ConnectBank/>
+          <Wallet/>
         </Modal>
         <Modal
           isOpen={this.state.isAccountModalOpen === 'true'}

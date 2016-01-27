@@ -1,7 +1,7 @@
 import React from 'react';
 
 import LoginSignup from '../Account.jsx'
-import ConnectBank from '../ConnectBank.jsx'
+import Wallet from '../Wallet.jsx'
 import Terms from './Terms.jsx'
 import Review from './Review.jsx'
 

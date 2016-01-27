@@ -1,0 +1,200 @@
+
+#wallet {
+  margin: 0;
+  text-transform: uppercase;
+  overflow: hidden;
+  border-radius: 10px;
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+
+  #walletTitle {
+    display: flex;
+    height: 50px;
+    flex: 0 1 50px;
+    text-align: center;
+    background-color: #CAC9CE;
+
+    >h1{
+      margin: auto;
+    }
+
+  }
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 18px;
+    display: inline-block;
+  }
+
+  div#bankToggleGroup {
+    display: flex;
+    width: 100%;
+    height: 70px;
+    flex: 0 1 70;
+    margin: 0;
+    background-color: #fff;
+
+    >* {
+      margin: auto;
+      flex: 1;
+    }
+
+    #bankToggleLabel {
+      margin-left: 60px;
+    }
+
+    label {
+      display: flex;
+      margin: 0;
+      align-items: center;
+      color: #6E6B76;
+
+      &[for='fiat'] {
+        margin-left: 150px;
+      }
+      &[for='ether'] {
+        margin-left: 25px;
+      }
+
+      &.checked {
+        text-decoration: underline;
+        text-decoration-color: #6E6B76;
+      }
+    }
+
+
+    input {
+      display: none;
+
+      + h2 {
+        position: relative;
+        display: block;
+        text-align: center;
+        padding: 5px;
+        margin: auto;
+      }
+
+      &:checked + h2 {
+        text-shadow:  1px  rgba(255,255,255,.5);
+      }
+    }
+  }
+
+  #etherOption {
+    width: 100%;
+    height: 250px;
+    background-color: #F0EFF4;
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column;
+
+    #choosePoints{
+      display: flex;
+      margin-top: auto;
+      margin-bottom: auto;
+
+      >* {
+        margin: auto;
+        flex: 1;
+      }
+      #newPoints {
+        margin-left: 60px;
+        input {
+          width: 200px;
+        }
+        h3 {
+          display: block;
+        }
+      }
+      #currentPoints {
+        margin-top: 60px;
+        margin-right: -50px;
+      }
+    }
+
+    #chooseAddress {
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-left: 60px;
+      padding: 50px 0;
+      width: 300px;
+    }
+  }
+
+  #fiatOption {
+    width: 100%;
+    height: 250px;
+    background-color: #F0EFF4;
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column;
+
+    #choosePoints{
+      display: flex;
+      margin-top: auto;
+      margin-bottom: auto;
+
+      >* {
+        margin: auto;
+        flex: 1;
+      }
+      #newPoints {
+        margin-left: 60px;
+        input {
+          width: 200px;
+        }
+        h3 {
+          display: block;
+        }
+      }
+      #currentPoints {
+        margin-top: 60px;
+        margin-left: 50px;
+      }
+    }
+
+    #bankInfo {
+      margin-left: 60px;
+      padding: 50px 0;
+      label {
+        margin: 10px 1%;
+
+        &[for=cardholder] {
+          width: 25%;
+        }
+
+        &[for=cardnumber] {
+          width: 20%;
+        }
+
+        &[for=exp] {
+          width: 20%;
+        }
+
+        &[for=cvv] {
+          width: 20%;
+        }
+      }
+    }
+  }
+
+  #submit {
+    display: block;
+    border-style: none;
+    width: 100%;
+    height: 50px;
+    background-color: #8ECB37;
+    color: #fff;
+    flex: 0 1 50px;
+    h1 {
+      margin: 0;
+    }
+  }
+}
