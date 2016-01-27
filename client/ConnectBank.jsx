@@ -1,5 +1,4 @@
 import React from 'react';
-import {web3} from './lib/lib.jsx';
 
 var ConnectBank = React.createClass({
   getInitialState(){

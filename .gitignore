@@ -7,3 +7,4 @@ dist/
 packages/
 reports/
 .env.json
+node_modules

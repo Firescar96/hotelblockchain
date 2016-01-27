@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import {web3,LoyaltyTokenRegistry,PersonaRegistry,modalStyles} from './lib/lib.jsx';
+import {modalStyles} from './lib/lib.jsx';
 
 var Account = React.createClass({
   getInitialState() {
