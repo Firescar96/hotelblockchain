@@ -9,11 +9,12 @@ const modalStyles = {
     left: '50%',
     right: 'auto',
     bottom: 'auto',
-    width: '700px',
-    height: '500px',
+    width: '900px',
+    height: '600px',
     marginRight: '-50%',
     padding: '0',
     overflow: 'hidden',
+    borderRadius: '15px',
     transform: 'translate(-50%, -50%)'
   }
 };

@@ -1,3 +1,16 @@
 development:
-  
-staging:
+  LoyaltyTokenRegistry:
+    onDeploy:
+      # - LoyaltyTokenRegistry = web3.eth.contract(contracts.LoyaltyTokenRegistry.abi).at(contracts.LoyaltyTokenRegistry.address);
+      - LoyaltyTokenRegistry.registerToken("0x088ab9098f905cca9d1e6da1c80a2697a0f73888");
+      - LoyaltyTokenRegistry.setTokenNameSymbol("0x088ab9098f905cca9d1e6da1c80a2697a0f73888","Choice Hotels", "CHH");
+      - LoyaltyTokenRegistry.setTokenConversionRate("0x088ab9098f905cca9d1e6da1c80a2697a0f73888",50);
+      - LoyaltyTokenRegistry.registerToken("0x088ab9098f905cca9d1e6da1c80a2697a0f73555");
+      - LoyaltyTokenRegistry.setTokenNameSymbol("0x088ab9098f905cca9d1e6da1c80a2697a0f73555","HIlton", "HLT");
+      - LoyaltyTokenRegistry.setTokenConversionRate("0x088ab9098f905cca9d1e6da1c80a2697a0f73555",100);
+      - LoyaltyTokenRegistry.registerToken("0x088ab9098f905cca9d1e6da1c80a2697a0f73444");
+      - LoyaltyTokenRegistry.setTokenNameSymbol("0x088ab9098f905cca9d1e6da1c80a2697a0f73444","Hyatt", "HYT");
+      - LoyaltyTokenRegistry.setTokenConversionRate("0x088ab9098f905cca9d1e6da1c80a2697a0f73444",60);
+      - LoyaltyTokenRegistry.registerToken("0x088ab9098f905cca9d1e6da1c80a2697a0f73777");
+      - LoyaltyTokenRegistry.setTokenNameSymbol("0x088ab9098f905cca9d1e6da1c80a2697a0f73777","IHG", "IHG");
+      - LoyaltyTokenRegistry.setTokenConversionRate("0x088ab9098f905cca9d1e6da1c80a2697a0f73777",20);

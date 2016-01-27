@@ -3,15 +3,14 @@
   margin: 0;
   text-transform: uppercase;
   overflow: hidden;
-  border-radius: 10px;
   display: flex;
   height: 100%;
   flex-flow: column;
 
   #walletTitle {
     display: flex;
-    height: 50px;
-    flex: 0 1 50px;
+    height: 70px;
+    flex: 0 1 70px;
     text-align: center;
     background-color: #CAC9CE;
 
@@ -20,6 +19,7 @@
     }
 
   }
+
   h1 {
     font-size: 30px;
   }
@@ -46,7 +46,7 @@
       flex: 1;
     }
 
-    #bankToggleLabel {
+    #pointsCost {
       margin-left: 60px;
     }
 
@@ -87,46 +87,77 @@
     }
   }
 
-  #etherOption {
-    width: 100%;
-    height: 250px;
-    background-color: #F0EFF4;
-    flex: 1 1 auto;
+  #choosePoints{
     display: flex;
-    flex-flow: column;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: #F0EFF4;
 
-    #choosePoints{
-      display: flex;
-      margin-top: auto;
-      margin-bottom: auto;
-
-      >* {
-        margin: auto;
-        flex: 1;
+    >* {
+      margin: auto;
+      flex: 1;
+    }
+    #newPoints {
+      margin-left: 60px;
+      input {
+        width: 200px;
       }
-      #newPoints {
-        margin-left: 60px;
-        input {
-          width: 200px;
-        }
-        h3 {
-          display: block;
-        }
-      }
-      #currentPoints {
-        margin-top: 60px;
-        margin-right: -50px;
+      h3 {
+        display: block;
       }
     }
-
-    #chooseAddress {
-      margin-top: auto;
-      margin-bottom: auto;
-      margin-left: 60px;
-      padding: 50px 0;
-      width: 300px;
+    #pointsCost {
+      margin-left: 40px;
+      p {
+        font-size: 22px;
+        color: #8ECB37;
+      }
     }
   }
+
+  #chooseHotels{
+    flex: 0 1 auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: #F0EFF4;
+    margin-left: 60px;
+
+    h3 {
+      display: block;
+    }
+
+    label {
+      margin: 0;
+      width: 100px;
+      height: 30px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      opacity: .3;
+
+      &[for='CHH'] {
+        background-image: url("/hotels/Choice Hotels Logo.png");
+      }
+      &[for='HLT'] {
+        background-image: url("/hotels/Hilton Logo.png");
+      }
+      &[for='HYT'] {
+        background-image: url("/hotels/Hyatt Logo.png");
+      }
+      &[for='IHG'] {
+        background-image: url("/hotels/IHG Logo.png");
+      }
+
+      &.checked {
+        opacity: 1;
+      }
+    }
+
+
+    input {
+      display: none;
+    }
+  }
+
 
   #fiatOption {
     width: 100%;
@@ -135,30 +166,6 @@
     flex: 1 1 auto;
     display: flex;
     flex-flow: column;
-
-    #choosePoints{
-      display: flex;
-      margin-top: auto;
-      margin-bottom: auto;
-
-      >* {
-        margin: auto;
-        flex: 1;
-      }
-      #newPoints {
-        margin-left: 60px;
-        input {
-          width: 200px;
-        }
-        h3 {
-          display: block;
-        }
-      }
-      #currentPoints {
-        margin-top: 60px;
-        margin-left: 50px;
-      }
-    }
 
     #bankInfo {
       margin-left: 60px;
@@ -185,14 +192,31 @@
     }
   }
 
+  #etherOption {
+    width: 100%;
+    height: 250px;
+    background-color: #F0EFF4;
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column;
+
+    #chooseAddress {
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-left: 60px;
+      padding: 50px 0;
+      width: 300px;
+    }
+  }
+
   #submit {
     display: block;
     border-style: none;
     width: 100%;
-    height: 50px;
+    height: 70px;
     background-color: #8ECB37;
     color: #fff;
-    flex: 0 1 50px;
+    flex: 0 1 70px;
     h1 {
       margin: 0;
     }
