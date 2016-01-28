@@ -1,37 +1,126 @@
-@import "./lib/mixins.scss";
+#account {
+  margin: 0;
+  text-transform: uppercase;
+  overflow: hidden;
+  display: flex;
+  height: 100%;
+  flex-flow: column;
 
-div#accountToggleGroup {
-  $buttonbgColor : #fff;
-  $txtbgColor : #7D7D7D;
+  h1 {
+    font-size: 30px;
+  }
 
-  display: block;
-  margin: 10px 0;
+  h2 {
+    font-size: 20px;
+  }
 
-  >label {
+  h3 {
+    font-size: 18px;
+    display: inline-block;
+  }
+
+  div#accountToggleGroup {
+    display: flex;
+    width: 100%;
+    height: 70px;
+    flex: 0 1 70;
     margin: 0;
-    align-items: center;
+    background-color: #CAC9CE;
 
-    //TODO: why wont these get applied
-    &[for=login] {
-      @include colorize($buttonbgColor, $txtbgColor);
+    label {
+      display: flex;
+      margin: 0;
+      flex: 0 1 200px;
+      align-items: center;
+      color: #6E6B76;
+
+      &[for='signup'] {
+        h2{
+        }
+      }
+      &[for='login'] {
+        margin-left: 25px;
+      }
+
+      &.checked {
+        text-decoration: underline;
+        text-decoration-color: #6E6B76;
+      }
     }
-    &[for=signup] {
-      @include colorize($buttonbgColor, $txtbgColor);
-    }
+
 
     input {
       display: none;
 
-      + span {
+      + h2 {
         position: relative;
         display: block;
         text-align: center;
         padding: 5px;
+        margin: auto;
       }
 
-      &:checked + span {
+      &:checked + h2 {
         text-shadow:  1px  rgba(255,255,255,.5);
       }
+    }
+  }
+
+  #signupOption {
+    width: 100%;
+    height: 250px;
+    background-color: #F0EFF4;
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column;
+
+    label {
+      margin-left: 60px;
+      padding: 10px 0;
+
+      &[for=address] {
+        width: 50%;
+      }
+
+      &[for=password] {
+        width: 40%;
+      }
+    }
+  }
+
+  #loginOption {
+    width: 100%;
+    height: 250px;
+    background-color: #F0EFF4;
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column;
+
+    label {
+      margin-left: 60px;
+      padding: 10px 0;
+
+      &[for=address] {
+        width: 50%;
+      }
+
+      &[for=password] {
+        width: 40%;
+      }
+    }
+  }
+
+  #submit {
+    display: block;
+    border-style: none;
+    width: 100%;
+    height: 70px;
+    background-color: #8ECB37;
+    color: #fff;
+    flex: 0 1 70px;
+    text-transform: uppercase;
+    h1 {
+      margin: 0;
     }
   }
 }

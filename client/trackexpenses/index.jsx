@@ -10,12 +10,12 @@ var TrackExpenses = React.createClass({
     )
   },
   componentDidMount(){
-    $("#checkin").datepicker({
+    $("#checkIn").datepicker({
       stepHour: 1,
       stepMinute: 5,
       dateFormat: 'D, d M yy'
     })
-    $("#checkout").datepicker({
+    $("#checkOut").datepicker({
       stepHour: 1,
       stepMinute: 5,
       dateFormat: 'D, d M yy'

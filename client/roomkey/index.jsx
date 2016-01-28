@@ -4,8 +4,8 @@ import Navbar from '../Navbar.jsx'
 var RoomKey = React.createClass({
   getInitialState() {
     return {
-      checkin:'',
-      checkout:'',
+      checkIn:'',
+      checkOut:'',
       nights:'',
       rooms:'',
       guests:'',
@@ -24,8 +24,11 @@ var RoomKey = React.createClass({
   },
   submit(e) {
     e.preventDefault()
-    console.log(this.state);
-    window.location = "/?"+$.param(this.state)
+    var state = this.state
+    state['checkIn'] = $.datepicker.formatDate('yy-mm-dd', $.datepicker.parseDate('D, d M yy', state.checkIn))
+    state['checkOut'] = $.datepicker.formatDate('yy-mm-dd', $.datepicker.parseDate('D, d M yy', state.checkOut))
+    console.log(state);
+    window.location = 'http://www.roomkey.com/#geocircles/42.355343|-71.0978562|10/hotels?'+$.param(state)
   },
   render() {
     return (
@@ -36,13 +39,13 @@ var RoomKey = React.createClass({
             <h4>Location</h4>
             <input id="location" className="form-control" placeholder="location" value={this.state.location} onChange={this.handleChange("location")}/>
           </label>
-          <label htmlFor="checkin">
+          <label htmlFor="checkIn">
             <h4>Check In</h4>
-            <input id="checkin" className="form-control" placeholder="checkin" value={this.state.checkin} onChange={this.handleChange("checkin","date")} readOnly/>
+            <input id="checkIn" className="form-control" placeholder="checkIn" value={this.state.checkIn} onChange={this.handleChange("checkIn","date")} readOnly/>
           </label>
-          <label htmlFor="checkout">
+          <label htmlFor="checkOut">
             <h4>Check Out</h4>
-            <input id="checkout" className="form-control" placeholder="checkout" value={this.state.checkout} onChange={this.handleChange("checkout","date")} readOnly/>
+            <input id="checkOut" className="form-control" placeholder="checkOut" value={this.state.checkOut} onChange={this.handleChange("checkOut","date")} readOnly/>
           </label>
           <label htmlFor="rooms">
             <h4>Rooms</h4>
@@ -59,20 +62,20 @@ var RoomKey = React.createClass({
   },
   componentDidMount(){
     var self=this;
-    $("#checkin").datepicker({
+    $("#checkIn").datepicker({
       stepHour: 1,
       stepMinute: 5,
       dateFormat: 'D, d M yy',
       onSelect(dateText) {
-        self.handleChange('checkin','date')(this)
+        self.handleChange('checkIn','date')(this)
       }
     })
-    $("#checkout").datepicker({
+    $("#checkOut").datepicker({
       stepHour: 1,
       stepMinute: 5,
       dateFormat: 'D, d M yy',
       onSelect(dateText) {
-        self.handleChange('checkout','date')(this)
+        self.handleChange('checkOut','date')(this)
       }
     })
   }

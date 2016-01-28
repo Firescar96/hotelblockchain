@@ -43,13 +43,13 @@ var Review = React.createClass({
           <h4>Location</h4>
           <input id="location" className="form-control" placeholder="location" value={this.state.hotelInfo.location} onChange={this.handleChange("location")} readonly/>
         </label>
-        <label htmlFor="checkin">
+        <label htmlFor="checkIn">
           <h4>Check In</h4>
-          <input id="checkin" className="form-control" placeholder="checkin" value={this.state.hotelInfo.checkin} onChange={this.handleChange("checkin")} readonly/>
+          <input id="checkIn" className="form-control" placeholder="checkIn" value={this.state.hotelInfo.checkIn} onChange={this.handleChange("checkIn")} readonly/>
         </label>
-        <label htmlFor="checkout">
+        <label htmlFor="checkOut">
           <h4>Check Out</h4>
-          <input id="checkout" className="form-control" placeholder="checkout" value={this.state.hotelInfo.checkout} onChange={this.handleChange("checkout")} readonly/>
+          <input id="checkOut" className="form-control" placeholder="checkOut" value={this.state.hotelInfo.checkOut} onChange={this.handleChange("checkOut")} readonly/>
         </label>
         <label htmlFor="rooms">
           <h4>Rooms</h4>

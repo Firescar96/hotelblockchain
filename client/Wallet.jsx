@@ -6,27 +6,41 @@ var Wallet = React.createClass({
       this.setState({accounts:accounts})
     })
     return {
-      type:'fiat',
+      type:'ether',
       account: web3.eth.defaultAccount,
       accounts: [],
-      points: 500,
+      balance: '',
+      points: '',
+      cost: 0,
       hotel: ''
     }
   },
   handleChange: function (key,type) {
     return function (e) {
-      var state = {};
+      var state = this.state;
       if(type=='select')
       state[key]=e.target.options[e.target.selectedIndex].value
       else
       state[key] = e.target.value;
 
+      if(key=='hotel')
+      state['balance']=PersonaRegistry.getTokenAmount.call(web3.eth.defaultAccount,this.state.hotel).toNumber()
 
-      if(type=='hotel')
-      state['points']=LoyaltyTokenRegistry.getTokenConversionRate.call(e.target.value).toNumber();
+      if(key=='hotel' || key =='points')
+      state['cost']=(parseInt(state.points)|| 0)/LoyaltyTokenRegistry.getTokenConversionRate.call(state.hotel).toNumber();
 
-      this.setState(state);
+      this.setState(state)
     }.bind(this);
+  },
+  submit(){
+    var gas = PersonaRegistry.increaseTokenAmount.estimateGas(web3.eth.defaultAccount,this.state.hotel)*2
+    PersonaRegistry.increaseTokenAmount(web3.eth.defaultAccount,this.state.hotel,
+      {
+        value:(parseInt(this.state.cost)||0),
+        gas:gas,
+        gasPrice:web3.eth.gasPrice.toNumber(),
+      })
+    this.props.closeModal()
   },
   render() {
     var addressOptions = this.state.accounts.map((account) => {
@@ -51,7 +65,7 @@ var Wallet = React.createClass({
       <div id="wallet" className="form-group">
         <div id="walletTitle"><h1>My Wallet</h1></div>
         <div id="bankToggleGroup">
-          <h2 id="pointsCost">Current Balance: {this.state.points}</h2>
+          <h2 id="pointsCost">Current Balance: {this.state.balance}</h2>
           <label htmlFor="fiat" className={this.state.type=='fiat'?'checked':''}>
             <input id="fiat" name="bankToggle" type="radio" onClick={this.handleChange('type')} value="fiat"/>
             <h2>Fiat</h2>
@@ -65,11 +79,11 @@ var Wallet = React.createClass({
         <div id="choosePoints">
           <label id="newPoints">
             <h3>How Many Points?</h3>
-            <input className="form-control"></input>
+            <input className="form-control" onChange={this.handleChange('points')} value={this.state.points}/>
           </label>
           <div id="pointsCost">
             <h3>Total Cost</h3>
-            <p>{this.state.points}</p>
+            <p>{this.state.cost}</p>
           </div>
         </div>
         <div id="chooseHotels">
@@ -102,7 +116,7 @@ var Wallet = React.createClass({
             <select className="form-control" value={this.state.account} onChange={this.handleChange('account','select')}>{addressOptions}</select>
           </label>
         </div>
-        <button id="submit"><h1>Buy Points</h1></button>
+        <button id="submit" onClick={this.submit}><h1>Buy Points</h1></button>
       </div>
     );
   }

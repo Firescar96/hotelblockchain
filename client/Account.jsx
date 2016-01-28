@@ -7,9 +7,7 @@ var Account = React.createClass({
     return {
       account: web3.eth.defaultAccount,
       accounts: [],
-      loyaltyTokens: [],
-      isSignupModalOpen: false,
-      isLoginModalOpen: false
+      type:'signup'
     }
   },
   handleChange: function (key,type) {
@@ -22,25 +20,18 @@ var Account = React.createClass({
       this.setState(state);
     }.bind(this);
   },
-  closeModals() {
-    this.setState({
-      type:''
-    })
-  },
-  login() {
-    //TODO get info from PersonaRegistry
-    this.closeModals()
-  },
-  signup(){
-    //TODO save info to PersonaRegistry
-    this.closeModals()
+  submit() {
+    if(this.state.type == 'login')
+    web3.eth.defaultAccount = this.state.account
+    else {
+      PersonaRegistry.registerPersona(this.state.account)
+      web3.eth.defaultAccount = this.state.account
+    }
+    this.props.closeModal()
   },
   componentWillMount() {
     web3.eth.getAccounts((_,accounts) => {
       this.setState({accounts:accounts})
-    })
-    LoyaltyTokenRegistry.registryRecords.call((_,tokens) => {
-      this.setState({loyaltyTokens:tokens})
     })
   },
   render() {
@@ -50,50 +41,41 @@ var Account = React.createClass({
       )
     })
 
-    var loyaltyBrands = this.state.loyaltyTokens.map((brand) => {
-      //TODO some stuff with getting the details of the token from it's contract
-      return (
-        <label key={brand.tokenSymbol}>
-          Name here {brand.tokenName}
-          <input name="loyaltyBrand" type="checkbox" value={"addresshere"+brand.tokenSymbol} ></input>
-        </label>
-      )
-    })
     return (
-      <div  className="form-group">
-
+      <div id="account" className="form-group">
         <div id="accountToggleGroup">
-          <label htmlFor="login" className={this.state.type=='login'?'checked':''}>
-            <input id="login" name="accountToggle" type="radio" onClick={this.handleChange('type')} value="login"/>
-            <span>Login</span>
-          </label>
-
           <label htmlFor="signup" className={this.state.type=='signup'?'checked':''}>
             <input id="signup" name="accountToggle" type="radio" onClick={this.handleChange('type')} value="signup"/>
-            <span>Signup</span>
+            <h2>Signup</h2>
+          </label>
+
+          <label htmlFor="login" className={this.state.type=='login'?'checked':''}>
+            <input id="login" name="accountToggle" type="radio" onClick={this.handleChange('type')} value="login"/>
+            <h2>Login</h2>
           </label>
         </div>
 
-        <div className={this.state.type=='login'?'':'hidden'}>
-          <label>
-            Choose address
-            <select value={this.state.account} onChange={this.handleChange('account','select')}>{addressOptions}</select>
+        <div id="signupOption" className={this.state.type=='signup'?'':'hidden'}>
+          <label htmlFor="address">
+            <h3>Address</h3>
+            <select id="address" className="form-control" value={this.state.account} onChange={this.handleChange('account','select')}>{addressOptions}</select>
           </label>
-          <button onClick={this.login}>Close</button>
-        </div>
-
-        <div className={this.state.type=='signup'?'':'hidden'}>
-          <label>
-            Choose address
-            <select value={this.state.account} onChange={this.handleChange('account','select')}>{addressOptions}</select>
+          <label htmlFor="password">
+            <h3>Password</h3>
+            <input id="password" className="form-control" />
           </label>
-
-          <div>
-            <span>Select Loyalty Brands</span>
-            {loyaltyBrands}
-          </div>
-          <button onClick={this.signup}>Close</button>
         </div>
+        <div id="loginOption" className={this.state.type=='login'?'':'hidden'}>
+          <label htmlFor="address">
+            <h3>Address</h3>
+            <select id="address" className="form-control" value={this.state.account} onChange={this.handleChange('account','select')}>{addressOptions}</select>
+          </label>
+          <label htmlFor="password">
+            <h3>Password</h3>
+            <input id="password" className="form-control" />
+          </label>
+        </div>
+        <button id="submit" onClick={this.submit}><h1>{this.state.type == 'signup'?'sign up': 'login'}</h1></button>
       </div>
     )
   }

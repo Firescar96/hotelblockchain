@@ -120,7 +120,7 @@
     margin-top: auto;
     margin-bottom: auto;
     background-color: #F0EFF4;
-    margin-left: 60px;
+    padding-left: 60px;
 
     h3 {
       display: block;
@@ -128,27 +128,37 @@
 
     label {
       margin: 0;
-      width: 100px;
-      height: 30px;
+      width: 200px;
+      height: 100px;
       background-size: 100% 100%;
       background-repeat: no-repeat;
-      opacity: .3;
 
       &[for='CHH'] {
-        background-image: url("/hotels/Choice Hotels Logo.png");
+        background-image: url("/hotels/CHOICE Block.png");
       }
       &[for='HLT'] {
-        background-image: url("/hotels/Hilton Logo.png");
+        background-image: url("/hotels/HILTON Block.png");
       }
       &[for='HYT'] {
-        background-image: url("/hotels/Hyatt Logo.png");
+        background-image: url("/hotels/HYATT Block.png");
       }
       &[for='IHG'] {
-        background-image: url("/hotels/IHG Logo.png");
+        background-image: url("/hotels/IHG Block.png");
       }
 
       &.checked {
-        opacity: 1;
+        &[for='CHH'] {
+          background-image: url("/hotels/CHOICE Block2.png");
+        }
+        &[for='HLT'] {
+          background-image: url("/hotels/HILTON Block2.png");
+        }
+        &[for='HYT'] {
+          background-image: url("/hotels/HYATT Block2.png");
+        }
+        &[for='IHG'] {
+          background-image: url("/hotels/IHG Block2.png");
+        }
       }
     }
 
@@ -169,7 +179,7 @@
 
     #bankInfo {
       margin-left: 60px;
-      padding: 50px 0;
+      padding: 20px 0;
       label {
         margin: 10px 1%;
 
@@ -204,7 +214,7 @@
       margin-top: auto;
       margin-bottom: auto;
       margin-left: 60px;
-      padding: 50px 0;
+      padding: 20px 0;
       width: 300px;
     }
   }
@@ -217,6 +227,7 @@
     background-color: #8ECB37;
     color: #fff;
     flex: 0 1 70px;
+    text-transform: uppercase;
     h1 {
       margin: 0;
     }

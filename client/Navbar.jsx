@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import Wallet from './Wallet.jsx'
 import Account from './Account.jsx'
 
-const modalStyles = {
+const walletModalStyles = {
   content : {
     top: '50%',
     left: '50%',
@@ -17,12 +17,28 @@ const modalStyles = {
     borderRadius: '15px',
     transform: 'translate(-50%, -50%)'
   }
-};
+}
+
+const accountModalStyles = {
+  content : {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    width: '900px',
+    height: '400px',
+    marginRight: '-50%',
+    padding: '0',
+    overflow: 'hidden',
+    borderRadius: '15px',
+    transform: 'translate(-50%, -50%)'
+  }
+}
 
 var Navbar = React.createClass({
   getInitialState() {
     return {
-      isWalletModalOpen:true,
+      isWalletModalOpen:false,
       isAccountModalOpen:false
     }
   },
@@ -51,14 +67,14 @@ var Navbar = React.createClass({
         <Modal
           isOpen={this.state.isWalletModalOpen === 'true'}
           onRequestClose={this.closeModals}
-          style={modalStyles}>
-          <Wallet/>
+          style={walletModalStyles}>
+          <Wallet closeModal={this.closeModals}/>
         </Modal>
         <Modal
           isOpen={this.state.isAccountModalOpen === 'true'}
           onRequestClose={this.closeModals}
-          style={modalStyles}>
-          <Account/>
+          style={accountModalStyles}>
+          <Account closeModal={this.closeModals}/>
         </Modal>
       </nav>
     )
