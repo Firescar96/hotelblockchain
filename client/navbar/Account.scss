@@ -11,7 +11,7 @@
   }
 
   h2 {
-    font-size: 20px;
+    font-size: 25px;
   }
 
   h3 {
@@ -36,15 +36,11 @@
 
       &[for='signup'] {
         h2{
+          margin-left: 60px;
         }
       }
       &[for='login'] {
         margin-left: 25px;
-      }
-
-      &.checked {
-        text-decoration: underline;
-        text-decoration-color: #6E6B76;
       }
     }
 
@@ -58,10 +54,12 @@
         text-align: center;
         padding: 5px;
         margin: auto;
+        padding-bottom:4px;
+        border-bottom:3px solid transparent;
       }
 
       &:checked + h2 {
-        text-shadow:  1px  rgba(255,255,255,.5);
+        border-bottom:3px solid #6E6B76;
       }
     }
   }

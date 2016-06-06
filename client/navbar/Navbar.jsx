@@ -10,7 +10,7 @@ const walletModalStyles = {
     right: 'auto',
     bottom: 'auto',
     width: '900px',
-    height: '600px',
+    height: '700px',
     marginRight: '-50%',
     padding: '0',
     overflow: 'hidden',

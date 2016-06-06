@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../Navbar.jsx'
+import Navbar from '../navbar/Navbar.jsx'
 
 var TrackExpenses = React.createClass({
   render() {

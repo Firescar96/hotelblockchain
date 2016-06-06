@@ -9,8 +9,7 @@
 
   #walletTitle {
     display: flex;
-    height: 70px;
-    flex: 0 1 70px;
+    flex: 0 1 100px;
     text-align: center;
     background-color: #CAC9CE;
 
@@ -48,6 +47,7 @@
 
     #pointsCost {
       margin-left: 60px;
+      flex: 1 1 200px;
     }
 
     label {
@@ -57,15 +57,10 @@
       color: #6E6B76;
 
       &[for='fiat'] {
-        margin-left: 150px;
+        margin-left: 0;
       }
       &[for='ether'] {
         margin-left: 25px;
-      }
-
-      &.checked {
-        text-decoration: underline;
-        text-decoration-color: #6E6B76;
       }
     }
 
@@ -79,10 +74,12 @@
         text-align: center;
         padding: 5px;
         margin: auto;
+        padding-bottom:4px;
+        border-bottom:3px solid transparent;
       }
 
       &:checked + h2 {
-        text-shadow:  1px  rgba(255,255,255,.5);
+        border-bottom:3px solid #6E6B76;
       }
     }
   }
@@ -91,6 +88,7 @@
     display: flex;
     margin-top: auto;
     margin-bottom: auto;
+    height: 200px;
     background-color: #F0EFF4;
 
     >* {
@@ -171,7 +169,7 @@
 
   #fiatOption {
     width: 100%;
-    height: 250px;
+    height: 150px;
     background-color: #F0EFF4;
     flex: 1 1 auto;
     display: flex;
@@ -179,7 +177,6 @@
 
     #bankInfo {
       margin-left: 60px;
-      padding: 20px 0;
       label {
         margin: 10px 1%;
 
@@ -204,7 +201,7 @@
 
   #etherOption {
     width: 100%;
-    height: 250px;
+    height: 150px;
     background-color: #F0EFF4;
     flex: 1 1 auto;
     display: flex;
@@ -214,8 +211,7 @@
       margin-top: auto;
       margin-bottom: auto;
       margin-left: 60px;
-      padding: 20px 0;
-      width: 300px;
+      width: 400px;
     }
   }
 
@@ -223,10 +219,9 @@
     display: block;
     border-style: none;
     width: 100%;
-    height: 70px;
     background-color: #8ECB37;
     color: #fff;
-    flex: 0 1 70px;
+    flex: 0 1 100px;
     text-transform: uppercase;
     h1 {
       margin: 0;

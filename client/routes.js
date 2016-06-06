@@ -1,24 +1,13 @@
 import {mount} from 'react-mounter';
 import Modal from 'react-modal';
 import Home from './home/index.jsx';
-import RoomKey from './roomkey/index.jsx';
 import TrackExpenses from './trackexpenses/index.jsx';
 
-FlowRouter.route('/', {
+FlowRouter.route('/(.*)', {
   name: 'home',
   action: function(params, queryParams){
     Modal.setAppElement(document.body);
-    console.log(queryParams);
-    console.log(params);
     mount(Home, {params: queryParams})
-  }
-});
-
-FlowRouter.route('/roomkey', {
-  name: 'roomkey',
-  action: function(params, queryParams){
-    Modal.setAppElement(document.body);
-    mount(RoomKey, {params: queryParams})
   }
 });
 

@@ -26,8 +26,9 @@ var Wallet = React.createClass({
       if(key=='hotel')
       state['balance']=PersonaRegistry.getTokenAmount.call(web3.eth.defaultAccount,this.state.hotel).toNumber()
 
-      if(key=='hotel' || key =='points')
-      state['cost']=(parseInt(state.points)|| 0)/LoyaltyTokenRegistry.getTokenConversionRate.call(state.hotel).toNumber();
+      if(key=='hotel' || key =='points') {
+        state['cost']=(parseInt(state.points)|| 0)/LoyaltyTokenRegistry.getTokenConversionRate.call(state.hotel).toNumber();
+      }
 
       this.setState(state)
     }.bind(this);
@@ -67,12 +68,12 @@ var Wallet = React.createClass({
         <div id="bankToggleGroup">
           <h2 id="pointsCost">Current Balance: {this.state.balance}</h2>
           <label htmlFor="fiat" className={this.state.type=='fiat'?'checked':''}>
-            <input id="fiat" name="bankToggle" type="radio" onClick={this.handleChange('type')} value="fiat"/>
+            <input id="fiat" name="bankToggle" type="radio" onClick={this.handleChange('type')} value="fiat" checked={this.state.type==='fiat'}/>
             <h2>Fiat</h2>
           </label>
 
           <label htmlFor="ether" className={this.state.type=='ether'?'checked':''}>
-            <input id="ether" name="bankToggle" type="radio" onClick={this.handleChange('type')} value="ether"/>
+            <input id="ether" name="bankToggle" type="radio" onClick={this.handleChange('type')} value="ether" checked={this.state.type==='ether'}/>
             <h2>Ether</h2>
           </label>
         </div>

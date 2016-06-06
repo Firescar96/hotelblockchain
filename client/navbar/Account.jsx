@@ -1,6 +1,18 @@
 import React from 'react';
 import Modal from 'react-modal';
-import {modalStyles} from './lib/lib.jsx';
+
+const modalStyles = {
+  content : {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    width: '500px',
+    height: '300px',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  }
+}
 
 var Account = React.createClass({
   getInitialState() {
@@ -30,7 +42,7 @@ var Account = React.createClass({
     this.props.closeModal()
   },
   componentWillMount() {
-    web3.eth.getAccounts((_,accounts) => {
+    web3.eth.getAccounts((err,accounts) => {
       this.setState({accounts:accounts})
     })
   },
@@ -45,12 +57,12 @@ var Account = React.createClass({
       <div id="account" className="form-group">
         <div id="accountToggleGroup">
           <label htmlFor="signup" className={this.state.type=='signup'?'checked':''}>
-            <input id="signup" name="accountToggle" type="radio" onClick={this.handleChange('type')} value="signup"/>
+            <input id="signup" name="accountToggle" type="radio" onClick={this.handleChange('type')} value="signup" checked={this.state.type=='signup'}/>
             <h2>Signup</h2>
           </label>
 
           <label htmlFor="login" className={this.state.type=='login'?'checked':''}>
-            <input id="login" name="accountToggle" type="radio" onClick={this.handleChange('type')} value="login"/>
+            <input id="login" name="accountToggle" type="radio" onClick={this.handleChange('type')} value="login" checked={this.state.type=='login'}/>
             <h2>Login</h2>
           </label>
         </div>

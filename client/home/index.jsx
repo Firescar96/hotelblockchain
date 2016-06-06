@@ -1,56 +1,83 @@
 import React from 'react';
-
-import LoginSignup from '../Account.jsx'
-import Wallet from '../Wallet.jsx'
-import Terms from './Terms.jsx'
-import Review from './Review.jsx'
+import Navbar from '../navbar/Navbar.jsx'
 
 var Home = React.createClass({
   getInitialState() {
     return {
-      termsAccepted:false,
-      hotelInfo: this.props.params
+      checkIn:'',
+      checkOut:'',
+      nights:'',
+      rooms:'',
+      guests:'',
+      location:''
     }
   },
-  flipTermsAccepted(e) {
-    this.setState({termsAccepted: e.target.checked})
+  handleChange: function (key,type) {
+    return function (e) {
+      var state = {};
+      if(type=='date')
+      state[key] = e.value
+      else
+      state[key] = e.target.value;
+      this.setState(state);
+    }.bind(this);
+  },
+  submit(e) {
+    e.preventDefault()
+    var state = this.state
+    state['checkIn'] = $.datepicker.formatDate('yy-mm-dd', $.datepicker.parseDate('D, d M yy', state.checkIn))
+    state['checkOut'] = $.datepicker.formatDate('yy-mm-dd', $.datepicker.parseDate('D, d M yy', state.checkOut))
+    console.log(state);
+    window.location = 'http://www.roomkey.com/#geocircles/42.355343|-71.0978562|10/hotels?'+$.param(state)
   },
   render() {
     return (
-      <div id="home" className="container">
-        <h1>
-          Hotel Blockchain
-        </h1>
-        <div className="panel-group" id="flow-accordion">
-          <div className="panel panel-default">
-            <div className="panel-heading">
-              <h4 className="panel-title">
-                <a data-toggle="collapse" data-parent="#flow-accordion" href="#details">Reservation Details</a>
-              </h4>
-            </div>
-            <div id="details" className="panel-collapse collapse">
-              <Review className="panel-body" hotelInfo={this.state.hotelInfo}/>
-            </div>
-          </div>
-          <div className="panel panel-default">
-            <div className="panel-heading">
-              <h4 className="panel-title">
-                <a data-toggle="collapse" data-parent="#flow-accordion" href="#terms">View Terms</a>
-              </h4>
-            </div>
-            <div id="terms" className="panel-collapse collapse out">
-              <Terms className="panel-body"/>
-            </div>
-          </div>
-          <div>
-            <label>
-              Accept Terms
-              <input type="checkbox" checked={this.state.termsAccepted} onChange={this.flipTermsAccepted}/>
-            </label>
-          </div>
-        </div>
+      <div id="roomkey">
+        <Navbar/>
+        <form id="main" className="container form-group">
+          <label htmlFor="location">
+            <h4>Location</h4>
+            <input id="location" className="form-control" placeholder="location" value={this.state.location} onChange={this.handleChange("location")}/>
+          </label>
+          <label htmlFor="checkIn">
+            <h4>Check In</h4>
+            <input id="checkIn" className="form-control" placeholder="checkIn" value={this.state.checkIn} onChange={this.handleChange("checkIn","date")} readOnly/>
+          </label>
+          <label htmlFor="checkOut">
+            <h4>Check Out</h4>
+            <input id="checkOut" className="form-control" placeholder="checkOut" value={this.state.checkOut} onChange={this.handleChange("checkOut","date")} readOnly/>
+          </label>
+          <label htmlFor="rooms">
+            <h4>Rooms</h4>
+            <input id="rooms" className="form-control" placeholder="rooms" value={this.state.rooms} onChange={this.handleChange("rooms")}></input>
+          </label>
+          <label htmlFor="guests">
+            <h4>Guests</h4>
+            <input id="guests" className="form-control" placeholder="guests" value={this.state.guests} onChange={this.handleChange("guests")}></input>
+          </label>
+          <button id="submit" onClick={this.submit}>Book Now</button>
+        </form>
       </div>
     )
+  },
+  componentDidMount(){
+    var self=this;
+    $("#checkIn").datepicker({
+      stepHour: 1,
+      stepMinute: 5,
+      dateFormat: 'D, d M yy',
+      onSelect(dateText) {
+        self.handleChange('checkIn','date')(this)
+      }
+    })
+    $("#checkOut").datepicker({
+      stepHour: 1,
+      stepMinute: 5,
+      dateFormat: 'D, d M yy',
+      onSelect(dateText) {
+        self.handleChange('checkOut','date')(this)
+      }
+    })
   }
 })
 
